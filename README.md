@@ -14,7 +14,8 @@
    2) Go to the cloned repo directory
    3) Run the following command: `conda create --name music`
    4) Run the following command: `conda activate music`
-   5) Run the following command: `conda install pip pytube scdl`
+   5) Run the following command: `conda install pip` 
+   6) Run the following command: `pip pytube scdl`
 
 4) At last to run the program: <br>
    Windows: `python download.py` <br>
