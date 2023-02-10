@@ -3,18 +3,10 @@ import sys
 from pytube import YouTube
 import os
 
-music_type = {
-  "drumbass" : "/mnt/h/Mijn Drive/Muziek/drumbass",
-  "techno" : "/mnt/h/Mijn Drive/Muziek/techno",
-  "rest" : "/mnt/h/Mijn Drive/Muziek/rest",
-  "request" : "/mnt/h/Mijn Drive/Muziek/request"
-}
-
-FOLDER = str(sys.argv[1])
-bestand_locatie = music_type[FOLDER]
+bestand_locatie = "/mnt/h/Mijn Drive/Muziek/"
 thres = 1
 
-url = sys.argv[2]
+url = sys.argv[1]
 
 if "soundcloud" in url:
   if "playlist+:" in url:
@@ -43,10 +35,10 @@ if "soundcloud" in url:
     file_size = os.path.getsize(bestand_locatie + filename) / 1000000
 
     if file_size < thres:
-        print(f"Threshold is not met -> file deleted. Try another version.")
+        print("failed,threshold_is_not_met")
         os.remove(bestand_locatie + filename)
     else:
-        print(filename + "  has been successfully downloaded from Soundcloud.")
+        print("success," + track.title + "," + track.artist)
 
 elif "youtube" in url:
   yt = YouTube(url)
@@ -60,6 +52,6 @@ elif "youtube" in url:
 
   file_size = os.path.getsize(new_file) / 1000000
   if file_size < thres:
-      print(f"Threshold is not met -> file deleted. Try another version.")
+      print("failed,threshold_is_not_met")
       os.remove(new_file)
   print(yt.title + " has been successfully downloaded from Youtube.")
